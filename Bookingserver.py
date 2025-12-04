@@ -3,9 +3,8 @@ from serpapi import google_search
 from dotenv import load_dotenv
 from os import getenv
 from pathlib import Path
+load_dotenv()
 
-envLoc = Path("C:/Users/logeshvarman/Downloads/project/.env")
-load_dotenv(envLoc)
 mcp = FastMCP("Booking_Server")
 
 @mcp.tool
