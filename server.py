@@ -1,28 +1,29 @@
-from fastmcp import FastMCP
-from serpapi import google_search
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
+from fastmcp import FastMCP
+from serpapi import GoogleSearch
 
 load_dotenv()
+
 server = FastMCP("Internet-Server")
 
-@server.tool
+
+@server.tool()
 def webSearch(query: str) -> dict:
     """
-    query: str -> The search query user wants to find on the internet.
-    Uses SerpAPI Google Search Engine.
-    """
+    Search the internet using the SerpAPI Google Search Engine.
 
+    Args:
+        query: The search query the user wants to find on the internet.
+    """
     params = {
         "engine": "google",
         "q": query,
         "api_key": os.getenv("SERP_API"),
-        "hl": "en"
+        "hl": "en",
     }
-
-    search = google_search.GoogleSearch(params)
+    search = GoogleSearch(params)
     results = search.get_dict()
-
     return results
 
 
